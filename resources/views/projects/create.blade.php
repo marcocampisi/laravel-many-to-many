@@ -32,6 +32,16 @@
                     @endforeach
                 </select>                
             </div>
+
+            <div class="mb-4">
+                @foreach ($technologies as $technology)
+                    <div class="flex items-center mb-4">
+                        <input type="checkbox" name="technologies[]" value="{{ $technology->id }}"
+                            class="mr-2">
+                        <label for="technologies-{{ $technology->id }}">{{ $technology->name }}</label>
+                    </div>
+                @endforeach
+            </div>
     
             <div class="flex items-center justify-end mt-4">
                 <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">

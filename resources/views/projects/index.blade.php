@@ -14,6 +14,13 @@
                             <h2 class="text-xl font-semibold mb-2">{{ $project->title }}</h2>
                             <p class="text-gray-600">{{ $project->description }}</p>
                             <p>Tipologia: {{ $project->type->name }}</p>
+                            <ul>
+                                @forelse ($project->technologies as $technology)
+                                    <li>Tipo: {{ $technology->name }}</li>    
+                                @empty
+                                    Nessuna tecnologia
+                                @endforelse
+                            </ul>
                         </div>
                         <div class="bg-gray-100 p-4 border-t border-gray-200 flex">
                             <a href="{{ route('projects.show', ['project' => $project]) }}" class="text-blue-500 hover:underline">Dettagli</a>

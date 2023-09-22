@@ -45,18 +45,19 @@ class ProjectController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'date' => 'required|date'
+            'date' => 'required|date',
+            'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'required|array|min:1'
         ]);
 
-        $project = new Project([
+        $project = Project::create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
-            'date' => $request->input('date')
+            'date' => $request->input('date'),
+            'type_id' => $request->input('type_id')
         ]);
 
         $project->technologies()->sync($request->input('technologies'));
-
-        $project->save();
 
         return redirect()->route('projects.index');
     }
@@ -82,7 +83,7 @@ class ProjectController extends Controller
 
         $technologies = Technology::all();
 
-        return view('projects.edit', compact('project', 'types'));
+        return view('projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -94,7 +95,8 @@ class ProjectController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'date' => 'required|date',
-            'type_id' => 'nullable|exists:types,id'
+            'type_id' => 'nullable|exists:types,id',
+            'technologies' => 'required|array|min:1'
         ]);
     
         $project->update([
@@ -103,6 +105,8 @@ class ProjectController extends Controller
             'date' => $request->input('date'),
             'type_id' => $request->input('type_id')
         ]);
+
+        $project->technologies()->sync($request->input('technologies'));
     
         return redirect()->route('projects.show', ['project' => $project])
             ->with('success', 'Progetto aggiornato con successo!');
