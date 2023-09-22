@@ -46,12 +46,14 @@
                                     <p class="text-gray-600">{{ $project->description }}</p>
                                     <p class="text-gray-600">{{ $project->date }}</p>
                                     <p class="text-gray-600"><strong>Tipologia: </strong>{{ $project->type->name }}</p>
-                                    <ul>
-                                        @forelse ($project->technologies as $technology)
-                                            <li>Tipo: {{ $technology->name }}</li>    
-                                        @empty
-                                            Nessuna tecnologia
-                                        @endforelse
+                                    <ul class="flex flex-wrap list-disc mt-2">
+                                        @foreach ($project->technologies as $technology)
+                                            <li class="flex flex-row items-center">
+                                                <span class="mr-2">
+                                                    <span class="bg-purple-600 text-white py-1 px-2 rounded-xl">{{ $technology->name }}</span>
+                                                </span>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </div>
                             </li>

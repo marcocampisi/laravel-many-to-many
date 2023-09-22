@@ -13,12 +13,14 @@
                 <h2 class="text-xl font-semibold mb-2">{{ $project->title }}</h2>
                 <p class="text-gray-600">{{ $project->description }}</p>
                 <p>Tipologia: {{ $project->type->name }}</p>
-                <ul>
-                    @forelse ($project->technologies as $technology)
-                        <li>Tipo: {{ $technology->name }}</li>    
-                    @empty
-                        Nessuna tecnologia
-                    @endforelse
+                <ul class="flex flex-wrap list-disc mt-2">
+                    @foreach ($project->technologies as $technology)
+                        <li class="flex flex-row items-center">
+                            <span class="mr-2">
+                                <span class="bg-blue-500 text-white py-1 px-2 rounded-xl">{{ $technology->name }}</span>
+                            </span>
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             <div class="bg-gray-100 p-4 border-t border-gray-200">
