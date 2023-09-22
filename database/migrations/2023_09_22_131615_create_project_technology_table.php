@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('project_technology', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('project_id');
-            $table->unsignedInteger('technology_id');
-            $table->timestamps();
+            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('technology_id');
 
             $table->foreign('project_id')
                 ->references('id')
