@@ -44,11 +44,12 @@
                         @foreach ($technologies as $technology)
                             <div class="flex items-center mb-4">
                                 <input type="checkbox" name="technologies[]" value="{{ $technology->id }}"
-                                    class="mr-2">
+                                    class="mr-2"
+                                    {{ in_array($technology->id, old('technologies', $project->technologies->pluck('id')->toArray())) ? 'checked' : '' }}>
                                 <label for="technologies-{{ $technology->id }}">{{ $technology->name }}</label>
                             </div>
                         @endforeach
-                    </div>
+                    </div>                    
 
                     <div class="mt-6">
                         <button type="submit"
