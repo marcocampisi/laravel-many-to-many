@@ -46,6 +46,13 @@
                                     <p class="text-gray-600">{{ $project->description }}</p>
                                     <p class="text-gray-600">{{ $project->date }}</p>
                                     <p class="text-gray-600"><strong>Tipologia: </strong>{{ $project->type->name }}</p>
+                                    <ul>
+                                        @forelse ($project->technologies as $technology)
+                                            <li>{{ $technology->name }}</li>    
+                                        @empty
+                                            None
+                                        @endforelse
+                                    </ul>
                                 </div>
                             </li>
                         @endforeach

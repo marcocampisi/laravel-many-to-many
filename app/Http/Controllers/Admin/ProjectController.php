@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\Type;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Technology;
 
 class ProjectController extends Controller
 {
@@ -18,7 +19,9 @@ class ProjectController extends Controller
 
         $types = Type::all();
 
-        return view('projects.index', compact('projects', 'types'));
+        $technologies = Technology::all();
+
+        return view('projects.index', compact('projects', 'types', 'technologies'));
     }
 
     /**
@@ -28,7 +31,9 @@ class ProjectController extends Controller
     {
         $types = Type::all();
 
-        return view('projects.create', compact('types'));
+        $technologies = Technology::all();
+
+        return view('projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -49,6 +54,8 @@ class ProjectController extends Controller
             'date' => $request->input('date')
         ]);
 
+        $project->technologies()->sync($request->input('technologies'));
+
         $project->save();
 
         return redirect()->route('projects.index');
@@ -61,7 +68,9 @@ class ProjectController extends Controller
     {
         $types = Type::all();
 
-        return view('projects.show', compact('project', 'types'));
+        $technologies = Technology::all();
+
+        return view('projects.show', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -70,6 +79,8 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
+
+        $technologies = Technology::all();
 
         return view('projects.edit', compact('project', 'types'));
     }
