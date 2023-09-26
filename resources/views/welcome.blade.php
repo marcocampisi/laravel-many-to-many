@@ -42,6 +42,7 @@
                         @foreach($projects as $project)
                             <li class="bg-gray-200 rounded-lg shadow-md overflow-hidden cursor-pointer transition hover:scale-105">
                                 <div class="p-4">
+                                    <img src="{{ asset('storage/app/images', $project->cover_image ) }}" alt="">
                                     <h2 class="text-xl font-semibold mb-2">{{ $project->title }}</h2>
                                     <p class="text-gray-600">{{ $project->description }}</p>
                                     <p class="text-gray-600">{{ $project->date }}</p>

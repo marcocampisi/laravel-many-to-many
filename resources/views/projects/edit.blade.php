@@ -32,6 +32,11 @@
                     </div>
 
                     <div class="mb-4">
+                        <label for="cover_image" class="block text-gray-600 font-medium">Immagine di copertina</label>
+                        <input type="file" id="cover_image" name="cover_image" class="form-input mt-1 block w-full rounded-lg">
+                    </div>
+
+                    <div class="mb-4">
                         <label for="type_id" class="block text-gray-600 font-medium">Tipo</label>
                         <select name="type_id" class="form-input mt-1 block w-full rounded-lg">
                             @foreach ($types as $type)

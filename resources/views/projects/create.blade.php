@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="container mx-auto p-6">
-        <form method="POST" action="{{ route('projects.store') }}">
+        <form method="POST" action="{{ route('projects.store') }}" enctype="multipart/form-data">
             @csrf
     
             <div class="mb-4">
@@ -22,6 +22,11 @@
             <div class="mb-4">
                 <label for="date" class="block text-gray-600 font-medium">Data</label>
                 <input type="date" id="date" name="date" class="form-input mt-1 block w-full rounded-lg">
+            </div>
+
+            <div class="mb-4">
+                <label for="cover_image" class="block text-gray-600 font-medium">Immagine di copertina</label>
+                <input type="file" id="cover_image" name="cover_image" class="form-input mt-1 block w-full rounded-lg">
             </div>
 
             <div class="mb-4">

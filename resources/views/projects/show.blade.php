@@ -10,6 +10,7 @@
 
         <div class="bg-white rounded-lg shadow-md overflow-hidden">
             <div class="p-4">
+                <img src="{{ asset('storage/app/images', $project->cover_image ) }}" alt="">
                 <h2 class="text-xl font-semibold mb-2">{{ $project->title }}</h2>
                 <p class="text-gray-600">{{ $project->description }}</p>
                 <p>Tipologia: {{ $project->type->name }}</p>

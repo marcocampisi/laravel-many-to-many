@@ -47,7 +47,8 @@ class ProjectController extends Controller
             'description' => 'required|string',
             'date' => 'required|date',
             'type_id' => 'nullable|exists:types,id',
-            'technologies' => 'required|array|min:1'
+            'technologies' => 'required|array|min:1',
+            'cover_image' => 'nullable|image|max:1024'
         ]);
 
         $project = Project::create([
@@ -56,6 +57,13 @@ class ProjectController extends Controller
             'date' => $request->input('date'),
             'type_id' => $request->input('type_id')
         ]);
+
+        if ($request->hasFile('cover_image')) {
+            $filename = time() . '.' . $request->file('cover_image')->getClientOriginalExtension();
+            $request->file('cover_image')->storeAs('images', $filename);
+            $project->cover_image = $filename;
+            $project->save();
+        }
 
         $project->technologies()->sync($request->input('technologies'));
 
