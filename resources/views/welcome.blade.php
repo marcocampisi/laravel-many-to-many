@@ -32,6 +32,7 @@
                 <h1 class="text-5xl sm:text-7xl font-mono font-extrabold text-gray-900 drop-shadow-xl hover:scale-105 transition cursor-default">Benvenuto nel Portfolio!</h1>
                 <p class="mt-4 text-lg text-black">Sei nella pagina principale, effettua l'accesso per apportare modifiche.</p>
                 <p class="mt-4 text-lg text-black">Da qui puoi solo visualizzare i progetti se non sei loggato.</p>
+                <p class="mt-4 text-lg text-black">Posiziona il cursore su un progetto per visualizzarne la copertina.</p>
             </div>
 
             <div class="container mx-auto p-6">
@@ -41,8 +42,9 @@
                     <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach($projects as $project)
                             <li class="bg-gray-200 rounded-lg shadow-md overflow-hidden cursor-pointer transition hover:scale-105">
-                                <div class="p-4">
-                                    <img src="{{ asset('storage/app/public/images', $project->cover_image ) }}" alt="">
+                                <div class="p-4 relative group">
+                                    <img src="{{ asset('storage/images/' . $project->cover_image) }}" alt="{{ $project->title }}"
+                                    class="absolute w-full h-full top-0 left-0 object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                     <h2 class="text-xl font-semibold mb-2">{{ $project->title }}</h2>
                                     <p class="text-gray-600">{{ $project->description }}</p>
                                     <p class="text-gray-600">{{ $project->date }}</p>
