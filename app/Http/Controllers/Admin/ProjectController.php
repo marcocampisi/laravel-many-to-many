@@ -60,7 +60,7 @@ class ProjectController extends Controller
 
         if ($request->hasFile('cover_image')) {
             $filename = time() . '.' . $request->file('cover_image')->getClientOriginalExtension();
-            $request->file('cover_image')->storeAs('images', $filename);
+            $request->file('cover_image')->storeAs('public/images', $filename);
             $project->cover_image = $filename;
             $project->save();
         }
